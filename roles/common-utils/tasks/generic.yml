@@ -1,0 +1,10 @@
+---
+- name: Change tmux.conf
+  block:
+  
+  - name: Change file
+    become: true
+    file: 
+      src: "{{ files_src_path | default() }}.tmux.conf"
+      dest:  "~/.tmux.conf"
+      state: present

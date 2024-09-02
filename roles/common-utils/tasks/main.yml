@@ -1,0 +1,12 @@
+---
+- name: Сollecting only the necessary facts
+  setup:
+    filter:
+      - ansible_distribution
+
+- name: Set default value if an item is not present in the list
+  set_fact:
+    task_file: "{{ supported_os_distribution[ansible_facts['os_distribution'] | lower] | default('stub.yml')}}"
+
+- name: Include tasks for the proper OS
+  include_tasks: "{{ task_file }}"
