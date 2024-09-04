@@ -1,1 +1,5 @@
----
+--- 
+# roles/nginx/tasks/stub.yml
+- name: Not Supported OS
+  fail:
+    msg: "This role doesn't support {{ ansible_facts['ansible_distribution'] }}!. Please check the role's meta section"
