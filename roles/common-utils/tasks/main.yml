@@ -1,12 +1,17 @@
 ---
+# tasks file for nginx
 - name: Сollecting only the necessary facts
   setup:
     filter:
+      - os_family
       - ansible_distribution
+      - ansible_distribution_release
+      - ansible_distribution_version
 
-- name: Set default value if an item is not present in the list
+
+- name: Set default value if item is not present in the list 
   set_fact:
-    task_file: "{{ supported_os_distribution[ansible_facts['os_distribution'] | lower] | default('stub.yml')}}"
+    distr_task_file: "{{ supported_os[ansible_facts['os_family'] | lower] | default('stub.yml')}}"
 
 - name: Include tasks for the proper OS
-  include_tasks: "{{ task_file }}"
+  include_tasks: "{{ distr_task_file }}"

@@ -1,0 +1,15 @@
+---
+- name: Install packages
+  block:
+  - name: Install packages
+    become: true
+    apt:
+      name: "{{ package_name }}"
+      state: present
+      update_cache: yes
+    
+  
+- name: Include common section
+  block:
+  - name: Common task  
+    include_tasks: generic.yml

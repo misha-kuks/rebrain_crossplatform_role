@@ -1,4 +1,4 @@
-supported_os_distribution:
-  fedora: fedora.yml
-  ubuntu: ubuntu.yml
-  
+---
+supported_os:
+  redhat: redhat.yml
+  debian: debian.yml
